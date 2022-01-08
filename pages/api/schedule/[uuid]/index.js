@@ -5,6 +5,18 @@ const ics = require('ics');
 const tvMazeBaseUrl = 'https://api.tvmaze.com';
 
 export default async function handler(req, res) {
+  const {
+    query: { uuid },
+    method,
+  } = req;
+
+  switch (method) {
+    default:
+      return getSchedule(uuid, res);
+  }
+}
+
+async function getSchedule(uuid, res) {
   const showIds = [44080, 347, 551, 5967, 6508, 216];
   const episodes = [];
 
