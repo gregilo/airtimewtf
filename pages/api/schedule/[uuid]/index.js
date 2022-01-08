@@ -1,5 +1,6 @@
 import striptags from 'striptags';
 import moment from 'moment';
+import clientPromise from '../../../../lib/mongodb';
 
 const ics = require('ics');
 const tvMazeBaseUrl = 'https://api.tvmaze.com';
@@ -17,7 +18,16 @@ export default async function handler(req, res) {
 }
 
 async function getSchedule(uuid, res) {
-  const showIds = [44080, 347, 551, 5967, 6508, 216];
+  const dbClientPromise = await clientPromise;
+  const db = dbClientPromise.db('airtimewtf');
+  const scheduleCollection = db.collection('schedules');
+  const schedule = await scheduleCollection.findOne({ _id: uuid });
+
+  if (!schedule) {
+    return res.status(404).json({ message: 'Schedule not found.' });
+  }
+
+  const showIds = schedule.shows;
   const episodes = [];
 
   for (const showId of showIds) {
