@@ -65,7 +65,7 @@ async function getSchedule(uuid, res) {
       }
       break;
     }
-  };
+  }
 
   const calendarEvents = ics.createEvents(episodes);
   if (calendarEvents.error) {
