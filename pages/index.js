@@ -6,6 +6,11 @@ import SearchResultsGrid from '../components/SearchResultsGrid/SearchResultsGrid
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState(null);
+  const [trackedShows, setTrackedShows] = useState([]);
+
+  const addToTrackedShows = (showId) => {
+    setTrackedShows([...trackedShows, showId]);
+  }
 
   return (
     <Layout>
@@ -15,7 +20,7 @@ export default function Home() {
       <h1>airtime.wtf</h1>
       <p>airtime.wtf is a tool for creating a custom ics calendar to track when specific TV shows air.</p>
       <SearchForm searchResults={searchResults} onSearch={setSearchResults} />
-      <SearchResultsGrid searchResults={searchResults} />
+      <SearchResultsGrid searchResults={searchResults} trackedShows={trackedShows} addToTrackedShows={addToTrackedShows} />
     </Layout>
   )
 }
