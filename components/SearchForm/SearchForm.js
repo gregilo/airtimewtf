@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import SearchResultsGrid from '../SearchResultsGrid/SearchResultsGrid';
-
-export default function SearchForm() {
-  const [searchResults, setSearchResults] = useState(null);
-
+export default function SearchForm(props) {
   const searchApiRequest = async event => {
     event.preventDefault();
 
     const res = await fetch(`https://api.tvmaze.com/search/shows?q=${encodeURIComponent(event.target.name.value)}`);
     const searchResults = await res.json();
 
-    setSearchResults(searchResults);
+    props.onSearch(searchResults);
   }
 
-  if (searchResults === null) {
+  if (props.searchResults === null) {
     return (
       <form onSubmit={searchApiRequest}>
         <label htmlFor="name">TV Show Name</label>
@@ -21,7 +16,6 @@ export default function SearchForm() {
         <button type="submit">Search</button>
       </form>
     )
-  } else {
-    return <SearchResultsGrid results={searchResults} />;
   }
+  return null;
 }
