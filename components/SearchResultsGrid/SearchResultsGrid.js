@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useEffect } from "react/cjs/react.development";
 import TrackButton from "../TrackButton/TrackButton";
 
 export default function SearchResultsGrid(props) {

@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#__next { height: 100%; }
+
+html { @apply text-slate-700; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { @apply text-slate-700; }
