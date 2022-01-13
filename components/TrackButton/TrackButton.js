@@ -7,7 +7,7 @@ export default function TrackButton(props) {
     buttonColorClasses = 'bg-red-700 hover:bg-red-800 focus:bg-red-800 active:bg-red-700';
   }
 
-  const buttonClasses = buttonColorClasses + ' transition-color duration-150 text-white text-sm font-bold py-1 px-3 rounded';
+  const buttonClasses = `${buttonColorClasses} transition-color duration-150 text-white text-sm font-bold py-1 px-3 rounded`;
 
   return <button onClick={(e) => props.addToTrackedShows(props.showId, e)} className={buttonClasses}>{buttonText}</button>;
 }

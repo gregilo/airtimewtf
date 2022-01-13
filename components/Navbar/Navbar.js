@@ -16,7 +16,7 @@ export default function Navbar() {
         <div className="w-1/2 text-right">
           <form>
             <label htmlFor="name" className="sr-only">Search by TV Show Name</label>
-            <input type="text" name="name" id="name" placeholder="TV Show Name" className="rounded-md" />
+            <input type="text" name="keys" id="name" placeholder="TV Show Name" className="rounded-md" />
             <button className="ml-2 rounded-md mx-auto py-2 px-6 uppercase font-bold bg-slate-700 hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">Search</button>
           </form>
         </div>

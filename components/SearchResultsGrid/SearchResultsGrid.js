@@ -1,5 +1,4 @@
-import Image from "next/image";
-import TrackButton from "../TrackButton/TrackButton";
+import ShowCard from '../ShowCard/ShowCard';
 
 export default function SearchResultsGrid(props) {
   if (props.searchResults === null) {
@@ -12,14 +11,8 @@ export default function SearchResultsGrid(props) {
       isTracked = true;
     }
 
-    return (<li key={showNum}>
-      <Image src={result.show.image.medium} alt={`Cover image for ${result.show.name}`} width="210" height="295" />
-      <h3>{result.show.name}</h3>
-      {result.show?.network?.name && <h4>{result.show.network.name}</h4>}
-      {result.show.genres.map((genre, genreNum) => <p key={genreNum}>{genre}</p>)}
-      <TrackButton isTracked={isTracked} addToTrackedShows={props.addToTrackedShows} showId={result.show.id} />
-    </li>);
+    return <ShowCard key={showNum} isTracked={isTracked} result={result} />;
   });
 
-  return <ul>{resultsListItems}</ul>;
+  return <ul className="grid col-auto sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5 lg:gap-6 xl:gap-7">{resultsListItems}</ul>;
 }

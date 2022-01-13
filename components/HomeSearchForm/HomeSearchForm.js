@@ -1,17 +1,9 @@
-import LargeTVLogo from "../LargeTVLogo/LargeTVLogo";
+import LargeTVLogo from '../LargeTVLogo/LargeTVLogo';
 
 export default function HomeSearchForm(props) {
   const searchApiRequest = async event => {
     event.preventDefault();
-    console.log('this happened)');
-
     const keyword = event.target.name.value;
-
-    // const res = await fetch(`https://api.tvmaze.com/search/shows?q=${encodeURIComponent(keyword)}`);
-    // const searchResults = await res.json();
-
-    // props.onSearch(searchResults);
-    console.log(encodeURIComponent(keyword));
     props.router.push(`/search?keys=${encodeURIComponent(keyword)}`);
   };
 
