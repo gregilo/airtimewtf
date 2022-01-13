@@ -9,6 +9,8 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "semi": "error",
-    "no-console": 1
+    "no-console": 1,
+    "quotes": ["error", "single"],
+    "prefer-template": 1
   }
 }
