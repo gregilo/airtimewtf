@@ -3,10 +3,6 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-  purge: [
-    './pages/**/*.js',
-    './components/**/*.js'
-  ],
   theme: {
     container: {
       center: true,
@@ -22,4 +18,4 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
   ],
-}
+};
