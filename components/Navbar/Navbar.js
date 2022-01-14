@@ -9,7 +9,7 @@ export default function Navbar() {
           <Link href="/">
             <a className="flex flex-row justify-start items-center">
               <SmallTVLogo />
-              <h1>airtime.wtf</h1>
+              <h1 className="font-serif text-3xl font-bold">airtime.wtf</h1>
             </a>
           </Link>
         </div>
