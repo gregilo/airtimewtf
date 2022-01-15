@@ -9,5 +9,5 @@ export default function TrackButton(props) {
 
   const buttonClasses = `${buttonColorClasses} transition-color duration-150 text-white text-sm font-bold py-1 px-3 rounded`;
 
-  return <button onClick={(e) => props.addToTrackedShows(props.showId, e)} className={buttonClasses}>{buttonText}</button>;
+  return <button onClick={(e) => props.isTracked ? props.removeTrackedShow(props.showId, e) : props.addTrackedShow(props.showId, e)} className={buttonClasses}>{buttonText}</button>;
 }

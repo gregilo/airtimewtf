@@ -5,7 +5,7 @@ import SearchResultsGrid from '../components/SearchResultsGrid/SearchResultsGrid
 import InteriorLayout from '../components/_layouts/InteriorLayout';
 import Loader from '../components/Loader/Loader';
 
-export default function Search() {
+export default function Search(props) {
   const [isLoading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState(null);
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function Search() {
   }
 
   if (query.keys && (searchResults !== null && searchResults.length)) {
-    return <SearchResultsGrid searchResults={searchResults} trackedShows={[]} />;
+    return <SearchResultsGrid searchResults={searchResults} trackedShows={props.trackedShows} addTrackedShow={props.addTrackedShow} removeTrackedShow={props.removeTrackedShow} />;
   }
 
   return <p>No results found. Please try again.</p>;

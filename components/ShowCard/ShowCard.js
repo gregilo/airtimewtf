@@ -3,9 +3,13 @@ import TrackButton from '../TrackButton/TrackButton';
 export default function ShowCard(props) {
   const imageSrc = props.result.show?.image?.medium ?? `https://via.placeholder.com/210x295.png?text=${encodeURIComponent(props.result.show.name)}`;
   const bgImageStyles = {backgroundImage: `url("${imageSrc}")`};
+  let isTracked = false;
+  if (props.trackedShows.indexOf(props.result.show.id) > -1) {
+    isTracked = true;
+  }
 
   return (
-    <li key={props.showNum} className="flex flex-col rounded-md shadow-md hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+    <li key={props.showNum} className="flex flex-col rounded-md overflow-hidden shadow-md hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
       <div className="relative w-full" style={{paddingBottom: '140.4761905%'}}>
         <div className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-center bg-cover" style={bgImageStyles}></div>
       </div>
@@ -19,7 +23,7 @@ export default function ShowCard(props) {
             </div>}
         </div>
         <div className="mt-3 justify-self-end">
-          <TrackButton isTracked={props.isTracked} addToTrackedShows={props.addToTrackedShows} showId={props.result.show.id} />
+          <TrackButton isTracked={isTracked} addTrackedShow={props.addTrackedShow} removeTrackedShow={props.removeTrackedShow} showId={props.result.show.id} />
         </div>
       </div>
     </li>
