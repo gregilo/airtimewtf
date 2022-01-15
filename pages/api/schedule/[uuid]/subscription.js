@@ -12,7 +12,10 @@ export default async function handler(req, res) {
   const schedule = await scheduleCollection.findOne({ _id: req.query.uuid });
 
   if (!schedule) {
-    return res.status(404).json({ message: 'Schedule not found.' });
+    return res.status(404).json({
+      success: false,
+      message: 'Schedule not found.'
+    });
   }
 
   const showIds = schedule.shows;
@@ -58,7 +61,10 @@ export default async function handler(req, res) {
   const calendarEvents = ics.createEvents(episodes);
   if (calendarEvents.error) {
     console.error(calendarEvents.error);
-    return res.status(500).json({ message: 'There was an error generating a calendar' });
+    return res.status(500).json({
+      success: false,
+      message: 'There was an error generating a calendar'
+    });
   }
 
   // return calendar
