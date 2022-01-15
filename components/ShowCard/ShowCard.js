@@ -4,7 +4,7 @@ export default function ShowCard(props) {
   const imageSrc = props.result.show?.image?.medium ?? `https://via.placeholder.com/210x295.png?text=${encodeURIComponent(props.result.show.name)}`;
   const bgImageStyles = {backgroundImage: `url("${imageSrc}")`};
   let isTracked = false;
-  if (props.trackedShows.indexOf(props.result.show.id) > -1) {
+  if (props.trackedShows && props.trackedShows.indexOf(props.result.show.id) > -1) {
     isTracked = true;
   }
 
