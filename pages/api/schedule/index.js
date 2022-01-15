@@ -5,14 +5,14 @@ export default async function handler(req, res) {
   if (!req.body || !Array.isArray(req.body) || !req.body.length) {
     return res.status(400).json({
       success: false,
-      message: 'Invalid request body. Please provide an array of show IDs.'
+      message: 'Invalid request body. Please provide an array of show IDs.',
     });
   }
   for (const showId of req.body) {
     if (!Number.isInteger(showId)) {
       return res.status(400).json({
         success: false,
-        message: 'Invalid show ID provided.'
+        message: 'Invalid show ID provided.',
       });
     }
   }

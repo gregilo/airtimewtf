@@ -21,13 +21,13 @@ async function getSchedule(uuid, res) {
   if (!schedule) {
     return res.status(404).json({
       success: false,
-      message: 'Schedule not found.'
+      message: 'Schedule not found.',
     });
   }
 
   return res.status(200).json({
     success: true,
-    data: { trackedShows: schedule.shows }
+    data: { trackedShows: schedule.shows },
   });
 }
 

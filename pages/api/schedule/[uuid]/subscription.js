@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   if (!schedule) {
     return res.status(404).json({
       success: false,
-      message: 'Schedule not found.'
+      message: 'Schedule not found.',
     });
   }
 
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       for (const episode of episodeRes) {
         episodes.push({
           title: `${showName} S${episode.season}E${episode.number}`,
-          start: moment(episode.airstamp).format('YYYY-M-D-H-m').split("-").map(timeValue => Number(timeValue)),
+          start: moment(episode.airstamp).format('YYYY-M-D-H-m').split('-').map(timeValue => Number(timeValue)),
           duration: { minutes: episode.runtime ?? 30 },
           description: striptags(episode.description),
         });
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
     console.error(calendarEvents.error);
     return res.status(500).json({
       success: false,
-      message: 'There was an error generating a calendar'
+      message: 'There was an error generating a calendar',
     });
   }
 

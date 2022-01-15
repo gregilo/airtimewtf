@@ -11,6 +11,7 @@
     "semi": "error",
     "no-console": 1,
     "quotes": ["error", "single"],
-    "prefer-template": 1
+    "prefer-template": 1,
+    "comma-dangle": ["error", "always-multiline"]
   }
 }

@@ -14,7 +14,7 @@ export default function ScheduleBar(props) {
     'border-x-2 ',
     'shadow-md ',
     'transition-all',
-    'duration-300'
+    'duration-300',
   ];
 
   if (props.trackedShows === null || !props.trackedShows.length) {
