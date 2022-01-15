@@ -9,6 +9,12 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       return getSchedule(uuid, res);
+
+    case 'PUT':
+      return putSchedule(uuid, req.body, res);
+
+    default:
+      return res.status(404).json({ 'success': false, 'message': 'Route not found' });
   }
 }
 
@@ -31,4 +37,17 @@ async function getSchedule(uuid, res) {
   });
 }
 
-
+async function putSchedule(uuid, reqBody, res) {
+  const dbClientPromise = await clientPromise;
+  const db = dbClientPromise.db('airtimewtf');
+  const scheduleCollection = db.collection('schedules');
+  await scheduleCollection.updateOne(
+    { _id: uuid },
+    { $set: { shows: reqBody } },
+    { upsert: true },
+  );
+  return res.status(200).json({
+    success: true,
+    data: 'Document updated successfully.',
+  });
+}
