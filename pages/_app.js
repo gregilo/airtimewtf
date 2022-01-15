@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }) {
           body: JSON.stringify(trackedShows),
           headers: {
             'Content-Type': 'application/json',
-          }
+          },
         })
         .then((res) => res.json())
         .then((res) => {
@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }) {
       });
   }, [trackedShows]);
 
-  return getLayout(<Component {...pageProps} trackedShows={trackedShows} addTrackedShow={addTrackedShow} removeTrackedShow={removeTrackedShow} />, trackedShows);
+  return getLayout(<Component {...pageProps} trackedShows={trackedShows} addTrackedShow={addTrackedShow} removeTrackedShow={removeTrackedShow} scheduleId={scheduleId} />, trackedShows);
 }
 
 export default MyApp;

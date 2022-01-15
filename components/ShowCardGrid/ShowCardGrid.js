@@ -1,11 +1,11 @@
 import ShowCard from '../ShowCard/ShowCard';
 
-export default function SearchResultsGrid(props) {
-  if (props.searchResults === null) {
+export default function ShowCardGrid(props) {
+  if (!props.shows || props.shows === null) {
     return null;
   }
 
-  const resultsListItems = props.searchResults.map((result, showNum) => {
+  const resultsListItems = props.shows.map((result, showNum) => {
     return <ShowCard key={showNum} result={result} trackedShows={props.trackedShows} addTrackedShow={props.addTrackedShow} removeTrackedShow={props.removeTrackedShow} />;
   });
 
