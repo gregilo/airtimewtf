@@ -28,6 +28,6 @@ export default async function handler(req, res) {
   });
   return res.status(200).json({
     success: true,
-    data: { scheduleUrl: `http://localhost:3000/api/schedule/${uuid}` },
+    data: { scheduleId: uuid },
   });
 }
