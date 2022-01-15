@@ -11,9 +11,9 @@ export default function Home() {
   return <HomeSearchForm searchResults={searchResults} onSearch={setSearchResults} router={router} />;
 }
 
-Home.getLayout = function getLayout(page) {
+Home.getLayout = function getLayout(page, trackedShows) {
   return (
-    <HomeLayout>
+    <HomeLayout trackedShows={trackedShows}>
       <Head>
         <title>airtime.wtf</title>
       </Head>

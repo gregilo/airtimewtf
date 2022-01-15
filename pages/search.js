@@ -42,9 +42,9 @@ export default function Search(props) {
   return <p>No results found. Please try again.</p>;
 }
 
-Search.getLayout = function getLayout(page) {
+Search.getLayout = function getLayout(page, trackedShows) {
   return (
-    <InteriorLayout>
+    <InteriorLayout trackedShows={trackedShows}>
       <Head>
         <title>airtime.wtf - Search Results</title>
       </Head>

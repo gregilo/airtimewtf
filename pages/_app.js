@@ -10,16 +10,16 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     if (trackedShows === null) {
-      if (localStorage.getItem('tracked-shows')) {
-        setTrackedShows(JSON.parse(localStorage.getItem('tracked-shows')));
+      if (localStorage.getItem('trackedShows')) {
+        setTrackedShows(JSON.parse(localStorage.getItem('trackedShows')));
       } else {
         setTrackedShows([]);
       }
     }
-    localStorage.setItem('tracked-shows', JSON.stringify(trackedShows));
+    localStorage.setItem('trackedShows', JSON.stringify(trackedShows));
   }, [trackedShows]);
 
-  return getLayout(<Component {...pageProps} trackedShows={trackedShows} addTrackedShow={addTrackedShow} removeTrackedShow={removeTrackedShow} />);
+  return getLayout(<Component {...pageProps} trackedShows={trackedShows} addTrackedShow={addTrackedShow} removeTrackedShow={removeTrackedShow} />, trackedShows);
 }
 
 export default MyApp;

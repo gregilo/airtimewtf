@@ -1,13 +1,15 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
+import ScheduleBar from '../ScheduleBar/ScheduleBar';
 
-export default function InteriorLayout({ children }) {
+export default function InteriorLayout(props) {
   return (
-      <React.Fragment>
+      <div className="pb-20">
         <Navbar />
         <div className="container">
-          {children}
+          {props.children}
         </div>
-      </React.Fragment>
+        <ScheduleBar trackedShows={props.trackedShows} />
+      </div>
     );
 }
