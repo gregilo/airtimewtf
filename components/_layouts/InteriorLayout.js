@@ -4,7 +4,7 @@ import ScheduleBar from '../ScheduleBar/ScheduleBar';
 
 export default function InteriorLayout(props) {
   return (
-      <div className="pb-20">
+      <div className="pb-28">
         <Navbar />
         <div className="container">
           {props.children}
