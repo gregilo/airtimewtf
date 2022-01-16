@@ -1,7 +1,7 @@
 import LargeTVLogo from '../LargeTVLogo/LargeTVLogo';
 
 export default function HomeSearchForm(props) {
-  const searchApiRequest = async event => {
+  const submitSearch = event => {
     event.preventDefault();
     const keyword = event.target.name.value;
     props.router.push(`/search?keys=${encodeURIComponent(keyword)}`);
@@ -13,7 +13,7 @@ export default function HomeSearchForm(props) {
         <LargeTVLogo />
         <h1 className="text-center text-4xl font-bold font-serif mb-2">airtime.wtf</h1>
         <h2 className="text-center text-xl mb-8">airtime.wtf is a tool for creating a custom ics calendar to track when specific TV shows air.</h2>
-        <form onSubmit={searchApiRequest} className="w-full max-w-md mx-auto">
+        <form onSubmit={submitSearch} className="w-full max-w-md mx-auto">
           <div className="mx-auto flex items-center justify-center">
             <label htmlFor="name" className="">TV Show Name</label>
             <input id="name" type="text" className="grow ml-2 rounded-md" required />
