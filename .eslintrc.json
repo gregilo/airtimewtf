@@ -13,5 +13,13 @@
     "quotes": ["error", "single"],
     "prefer-template": 1,
     "comma-dangle": ["error", "always-multiline"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["pages/api/**/*"],
+      "rules": {
+        "no-console": 0
+      }
+    }
+  ]
 }
