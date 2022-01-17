@@ -17,8 +17,8 @@ export default function HomeSearchForm(props) {
         <form onSubmit={submitSearch} className="w-full max-w-md mx-auto">
           <div className="mx-auto w-full relative">
             <label htmlFor="name" className="sr-only">TV Show Name</label>
-            <input id="name" type="text" className="grow border-slate-500 pr-20 rounded-md w-full" placeholder="TV Show Name" required />
-            <button type="submit" className="absolute rounded-r-md py-2 px-6 top-0 right-0 border border-slate-500 uppercase font-bold bg-white text-slate-800 hover:text-white focus:text-white active:text-white hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">
+            <input id="name" type="text" className="grow border-slate-500 pr-16 rounded-md w-full" placeholder="TV Show Name" required />
+            <button type="submit" className="absolute rounded-r-md py-2 px-4 top-0 right-0 border border-slate-500 uppercase font-bold bg-white text-slate-800 hover:text-white focus:text-white active:text-white hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">
               <span className="sr-only">Search</span>
               <SearchIcon />
             </button>
