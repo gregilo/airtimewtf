@@ -19,7 +19,16 @@ export default async function handler(req, res) {
 }
 
 async function getSchedule(uuid, res) {
-  const dbClientPromise = await clientPromise;
+  let dbClientPromise;
+  try {
+    dbClientPromise = await clientPromise;
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: 'Error connecting to database.',
+    });
+  }
   const db = dbClientPromise.db('airtimewtf');
   const scheduleCollection = db.collection('schedules');
   const schedule = await scheduleCollection.findOne({ _id: uuid });
@@ -38,7 +47,16 @@ async function getSchedule(uuid, res) {
 }
 
 async function putSchedule(uuid, reqBody, res) {
-  const dbClientPromise = await clientPromise;
+  let dbClientPromise;
+  try {
+    dbClientPromise = await clientPromise;
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: 'Error retrieving data from database.',
+    });
+  }
   const db = dbClientPromise.db('airtimewtf');
   const scheduleCollection = db.collection('schedules');
   await scheduleCollection.updateOne(

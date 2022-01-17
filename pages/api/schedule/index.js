@@ -17,7 +17,16 @@ export default async function handler(req, res) {
     }
   }
 
-  const dbClientPromise = await clientPromise;
+  let dbClientPromise;
+  try {
+    dbClientPromise = await clientPromise;
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: 'Error retrieving data from database.',
+    });
+  }
   const db = dbClientPromise.db('airtimewtf');
   const scheduleCollection = db.collection('schedules');
 
