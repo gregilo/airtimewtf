@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  const [trackedShows, setTrackedShows] = useState(null);
+  const [trackedShows, setTrackedShows] = useState([]);
   const [scheduleId, setScheduleId] = useState(null);
+  const [initFailed, setInitFailed] = useState(false);
   const addTrackedShow = (showId) => setTrackedShows([...trackedShows, showId]);
   const removeTrackedShow = (showId) => setTrackedShows(trackedShows.filter(function(show) { return show !== showId; }));
   const trackedShowsInit = useRef(false);
@@ -20,14 +21,20 @@ function MyApp({ Component, pageProps }) {
           if (res.success) {
             return setTrackedShows(res.data.trackedShows);
           }
+          setInitFailed(true);
+          localStorage.removeItem('scheduleId');
           return setTrackedShows([]);
+        })
+        .catch(() => {
+          setInitFailed(true);
+          localStorage.removeItem('scheduleId');
+          setTrackedShows([]);
         });
     }
   }, []);
 
   useEffect(() => {
-    // Wait for trackedShows to have an actual value
-    if (trackedShows === null) {
+    if (initFailed) {
       return;
     }
 
@@ -40,34 +47,34 @@ function MyApp({ Component, pageProps }) {
     // if scheduleId not in local storage, create new
     const storedScheduleId = localStorage.getItem('scheduleId');
     if (!storedScheduleId) {
-      return fetch('/api/schedule', {
-          method: 'POST',
+      if (trackedShows.length) {
+        return fetch('/api/schedule', {
+            method: 'POST',
+            body: JSON.stringify(trackedShows),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.success) {
+              localStorage.setItem('scheduleId', res.data.scheduleId);
+            }
+          })
+          .catch(() => { /* Error Notification */ });
+      }
+    } else {
+      return fetch(`/api/schedule/${storedScheduleId}`, {
+          method: 'PUT',
           body: JSON.stringify(trackedShows),
           headers: {
             'Content-Type': 'application/json',
           },
         })
         .then((res) => res.json())
-        .then((res) => {
-          if (res.success) {
-            localStorage.setItem('scheduleId', res.data.scheduleId);
-          }
-        });
+        .catch(() => { /* Error Notification */ });
     }
-    return fetch(`/api/schedule/${storedScheduleId}`, {
-        method: 'PUT',
-        body: JSON.stringify(trackedShows),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => res.json())
-      .then((res) => {
-        if (!res.success) {
-          // Show error notification
-        }
-      });
-  }, [trackedShows]);
+  }, [initFailed, trackedShows]);
 
   return getLayout(<Component {...pageProps} trackedShows={trackedShows} addTrackedShow={addTrackedShow} removeTrackedShow={removeTrackedShow} scheduleId={scheduleId} />, trackedShows);
 }
