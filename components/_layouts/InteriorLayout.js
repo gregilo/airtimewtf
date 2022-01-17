@@ -9,7 +9,7 @@ export default function InteriorLayout(props) {
         <div className="container">
           {props.children}
         </div>
-        <ScheduleBar trackedShows={props.trackedShows} />
+        {props.hideScheduleBar ? '' : <ScheduleBar trackedShows={props.trackedShows} />}
       </div>
     );
 }
