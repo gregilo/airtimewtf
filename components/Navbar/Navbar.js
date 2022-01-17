@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SearchIcon from '../SearchIcon/SearchIcon';
 import SmallTVLogo from '../SmallTVLogo/SmallTVLogo';
 
 export default function Navbar() {
@@ -22,10 +23,13 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="w-1/2 text-right">
-          <form onSubmit={submitSearch}>
+          <form onSubmit={submitSearch} className="relative">
             <label htmlFor="name" className="sr-only">Search by TV Show Name</label>
-            <input type="text" name="keys" id="name" placeholder="TV Show Name" className="rounded-md" />
-            <button className="ml-2 rounded-md mx-auto py-2 px-6 uppercase font-bold bg-slate-700 hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">Search</button>
+            <input type="text" name="keys" id="name" placeholder="TV Show Name" className="pr-16 border-slate-500 rounded-md w-full max-w-md" required />
+            <button className="absolute top-0 right-0 rounded-r-md border border-slate-500 py-2 px-4 uppercase font-bold bg-white text-slate-700 hover:text-white focus:text-white active:text-white hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">
+              <span className="sr-only">Search</span>
+              <SearchIcon />
+            </button>
           </form>
         </div>
       </div>
