@@ -1,4 +1,5 @@
 import LargeTVLogo from '../LargeTVLogo/LargeTVLogo';
+import SearchIcon from '../SearchIcon/SearchIcon';
 
 export default function HomeSearchForm(props) {
   const submitSearch = event => {
@@ -14,11 +15,14 @@ export default function HomeSearchForm(props) {
         <h1 className="text-center text-4xl font-bold font-serif mb-2">airtime.wtf</h1>
         <h2 className="text-center text-xl mb-8">airtime.wtf is a tool for creating a custom ics calendar to track when specific TV shows air.</h2>
         <form onSubmit={submitSearch} className="w-full max-w-md mx-auto">
-          <div className="mx-auto flex items-center justify-center">
-            <label htmlFor="name" className="">TV Show Name</label>
-            <input id="name" type="text" className="grow ml-2 rounded-md" required />
+          <div className="mx-auto w-full relative">
+            <label htmlFor="name" className="sr-only">TV Show Name</label>
+            <input id="name" type="text" className="grow border-slate-500 pr-20 rounded-md w-full" placeholder="TV Show Name" required />
+            <button type="submit" className="absolute rounded-r-md py-2 px-6 top-0 right-0 border border-slate-500 uppercase font-bold bg-white text-slate-800 hover:text-white focus:text-white active:text-white hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">
+              <span className="sr-only">Search</span>
+              <SearchIcon />
+            </button>
           </div>
-          <button type="submit" className="block rounded-md mx-auto py-2 px-6 mt-4 uppercase font-bold bg-slate-700 hover:bg-slate-900 focus:bg-slate-900 active:bg-slate-700 transition-color duration-150 text-white">Search</button>
         </form>
       </div>
     </div>
