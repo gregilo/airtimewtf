@@ -3,6 +3,7 @@ import Head from 'next/head';
 import InteriorLayout from '../components/_layouts/InteriorLayout';
 import ShowCardGrid from '../components/ShowCardGrid/ShowCardGrid';
 import Loader from '../components/Loader/Loader';
+import ClipboardIcon from '../components/ClipboardIcon/ClipboardIcon';
 import { Promise } from 'es6-promise';
 
 export default function SubscriptionUrl(props) {
@@ -21,6 +22,31 @@ export default function SubscriptionUrl(props) {
       .then(setShowsLoading(false));
   }, [props.trackedShows]);
 
+  function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+
+    // Avoid scrolling to bottom
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+  }
+
+  function copyTextToClipboard(text) {
+    if (!navigator.clipboard) {
+      fallbackCopyTextToClipboard(text);
+      return;
+    }
+    navigator.clipboard.writeText(text);
+  }
+
   if (!props.trackedShows.length) {
     return (
       <div>
@@ -28,12 +54,17 @@ export default function SubscriptionUrl(props) {
       </div>
     );
   }
+  const subscriptionUrl = `https://airtime.wtf/api/schedule/${props.scheduleId}/subscription`;
 
   return (
     <div>
-      <div className="flex flex-row items-center mb-10">
+      <div className="flex flex-row items-center mb-10 relative">
         <label htmlFor="subscriptionUrl" className="mr-4">Subscription URL:</label>
-        <input type="text" id="subscriptionUrl" className="font-mono grow" readOnly={true} value={`https://airtime.wtf/api/schedule/${props.scheduleId}/subscription`} />
+        <input type="text" id="subscriptionUrl" className="font-mono grow px-4 py-3 border-slate-500" readOnly={true} value={subscriptionUrl} onFocus={(e) => e.target.select()} />
+        <button title="Copy calendar subscription URL to clipboard" onClick={() => copyTextToClipboard(subscriptionUrl)} className="absolute top-0 right-0 p-3 hover:bg-slate-800 focus:bg-slate-800 active:bg-slate-800 hover:text-white focus:text-white active:text-white transition-colors">
+          <span className="sr-only">Copy calendar subscription URL to clipboard</span>
+          <ClipboardIcon />
+        </button>
       </div>
       {showsLoading ?
         <div className="text-center"><Loader />Loading tracked shows...</div> :
