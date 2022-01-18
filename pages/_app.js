@@ -59,6 +59,7 @@ function MyApp({ Component, pageProps }) {
           .then((res) => {
             if (res.success) {
               localStorage.setItem('scheduleId', res.data.scheduleId);
+              setScheduleId(res.data.scheduleId);
             }
           })
           .catch(() => { /* Error Notification */ });
