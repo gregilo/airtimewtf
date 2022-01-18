@@ -3,6 +3,7 @@ import Head from 'next/head';
 import InteriorLayout from '../components/_layouts/InteriorLayout';
 import ShowCardGrid from '../components/ShowCardGrid/ShowCardGrid';
 import Loader from '../components/Loader/Loader';
+import { Promise } from 'es6-promise';
 
 export default function SubscriptionUrl(props) {
   const [shows, setShows] = useState([]);

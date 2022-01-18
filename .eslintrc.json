@@ -12,11 +12,13 @@
     "no-console": 1,
     "quotes": ["error", "single"],
     "prefer-template": 1,
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": ["error", "always-multiline"],
+    "prefer-const": 1,
+    "no-var": 1
   },
   "overrides": [
     {
-      "files": ["pages/api/**/*"],
+      "files": ["pages/api/**/*", "./server.js"],
       "rules": {
         "no-console": 0
       }
